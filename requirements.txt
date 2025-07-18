@@ -1,0 +1,7 @@
+# Backend dependencies (run in backend/)
+npm install
+npm install class-validator class-transformer
+
+# Frontend dependencies (run in frontend/)
+npm install
+npm install axios 
