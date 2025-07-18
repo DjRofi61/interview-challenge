@@ -1,113 +1,89 @@
-# 🚀 Oxyera Async Interview Challenge
+# Oxyera Full-Stack Challenge
 
-Hi! 👋 Welcome to the Oxyera async technical challenge. This test will help us evaluate your independence, code quality, organization, and technical decisions without ambiguity, so you can focus on delivering your best work.
+## Project Overview
+This project is a full-stack mini-app for managing patients, medications, and their treatment assignments for a digital health workflow. It features:
+- A NestJS backend with a SQLite database
+- A modern React/Next.js frontend (CSS only, no Tailwind)
+- Full CRUD for patients, medications, and assignments
+- Calculation of remaining treatment days
+- Validation, error handling, and user-friendly UI
 
----
+## How to Run the Project
 
-## 🎯 The Challenge
+### Backend (NestJS)
+1. Open a terminal and navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the backend server:
+   ```bash
+   npm run start:dev
+   ```
+   The backend will run at [http://localhost:8080](http://localhost:8080)
 
-### 📝 Description
+### Frontend (Next.js)
+1. Open a new terminal and navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the frontend server:
+   ```bash
+   npm run dev
+   ```
+   The frontend will run at [http://localhost:3000](http://localhost:3000)
 
-In this async challenge, you will build a full-stack mini-app to manage patients, medications, and their treatment assignments for a digital health workflow.
+## Running Unit Tests
 
-You will implement CRUD APIs using NestJS with a SQLite database (already configured) and a minimal Next.js frontend to interact with these APIs. A patient can have multiple medication assignments, and you will implement logic to calculate the remaining days of each treatment automatically.
+The backend includes unit tests for the core calculation logic (e.g., remaining days for assignments).
 
-The goal is to evaluate your ability to:
-
-- Deliver clear, scalable, maintainable code.
-
-- Handle clean API design and testing.
-
-- Build a simple, functional UI connected to your backend.
-
-- Manage your workflow independently with clear commits.
-
-This test simulates real work at Oxyera: you will receive a task, execute it end-to-end, and submit it for review, demonstrating your ownership and technical skills without requiring continuous oversight.
-
-### ✅ What will you implement 
-
-✅ **Backend (NestJS, runs on port **`8080`**)**
-
-- CRUD endpoints for:
-  - `Patient` (name, date of birth)
-  - `Medication` (name, dosage, frequency)
-  - `Assignment` (assign a medication to a patient with a start date and number of days)
-- **A patient can have multiple medication assignments**.
-- Endpoint to calculate and return **remaining days of treatment** for each assignment (based on start date + days - today).
-- Endpoints should:
-  - Return clear, structured JSON.
-  - Validate input (e.g., required fields, valid dates).
-  - Return appropriate HTTP status codes.
-  - Be covered with at least **one unit test for calculation logic**.
-
-✅ **Frontend (Next.js, runs on port **`3000`**)**
-
-- Multiple pages with Tailwind for styling.
-- Features:
-  - List patients with their assignments and remaining treatment days.
-  - Forms to create:
-    - Patients
-    - Medications
-    - Assign medications to patients.
-- Display **remaining treatment days clearly per assignment**.
-- Use a **global constant for backend URL** for clarity.
-
-✅ Use the **SQLite DB already configured in** `/backend/database.sqlite`.
-
-✅ Commit clearly and progressively, showing your reasoning in your commit messages.
-
-✅ Use **TypeScript** everywhere.
-
-✅ Structure your code cleanly to reflect scalability.
-
----
-
-## ⚡ What We’re Evaluating
-
-- Clear and scalable folder structure.
-- Proper API design and HTTP handling.
-- Input validation and error handling.
-- Consistent, readable code.
-- Use of TypeScript types for safety.
-- Test quality and coverage of core logic.
-- Ability to deliver a working feature with clean commits.
-- UI clarity and correct functional connection with your backend.
-
----
-
-## 🚀 Running the Project
-
-**Backend:**
-
+To run all backend tests:
 ```bash
 cd backend
 npm install
-npm run start:dev
+npm run test
 ```
 
-Access on `http://localhost:8080`.
-
-**Frontend:**
-
+To run only the assignment calculation logic test:
 ```bash
-cd frontend
-npm install
-npm run dev
+npm run test assignment
 ```
 
-Access on `http://localhost:3000`.
+You should see output like:
+```
+PASS  src/assignment/assignment.service.spec.ts
+  AssignmentService
+    ✓ should calculate remaining days correctly (future end date)
+    ✓ should return 0 if treatment is finished
+```
 
-The SQLite database is located at `backend/database.sqlite`.
+All test files are located in `backend/src/` and end with `.spec.ts`.
+
+## Features Implemented
+- CRUD for Patients, Medications, Assignments (Create, Read, Update, Delete)
+- Assign medications to patients with start date and duration
+- Calculation and display of remaining treatment days
+- Input validation and error handling (with user-friendly messages)
+- Modern, responsive UI (CSS only)
+- Custom modals for delete confirmations and error explanations
+- Toast notifications for feedback
+- Navigation bar for easy access to all sections
+- Unit tests for core calculation logic
+
+## Special Notes
+- You cannot delete a patient or medication if it is still referenced by assignments. The UI will show a clear message and link to manage assignments.
+- All backend and frontend code is written in TypeScript.
+- The SQLite database is located at `backend/database.sqlite`.
+- For any questions, see the code comments or contact the author.
 
 ---
 
-## 📩 Submission
-
-✅ Complete by one week after you recieved the assignment. 
-
-✅ Push to your your personal forked repo. 
-
-✅ Email your repo link to [dev@oxyera.com](mailto\:dev@oxyera.com).
-
-Thank you for your interest in Oxyera. We look forward to reviewing your structured, clear, and working solution!
+**Thank you for reviewing this challenge!**
 
